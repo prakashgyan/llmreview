@@ -39,10 +39,10 @@ def get_file_diff_between_branches(source_branch: str, target_branch: str, filen
 
 
 
-if __name__ == "__main__":
-    # Example usage
-    source_branch = "master"
-    target_branch = "feature/core_items"
-    filename = "path/to/your/file.txt"
-    diff = get_file_diff_between_branches(source_branch, target_branch, filename)
-    print(diff)
+# if __name__ == "__main__":
+#     # Example usage
+#     source_branch = "master"
+#     target_branch = "feature/core_items"
+#     filename = "README.md"
+#     diff = get_file_diff_between_branches(source_branch, target_branch, filename)
+#     print(diff)
