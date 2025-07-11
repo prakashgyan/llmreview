@@ -3,16 +3,22 @@ name = "llmreview"
 version = "0.1.0"
 description = "CLI tool for LLM-based code reviews between git branches"
 readme = "README.md"
-authors = [{name = "Prakash Gyan", email = "prakash.gyan@frieslandcampina.com"}]
-requires-python = ">=3.12"
+authors = [{ name = "Prakash Gyan", email = "prakash.gyan@frieslandcampina.com" }]
+requires-python = ">=3.10"
 dependencies = [
     "openai",
     "python-dotenv"
 ]
 
 [project.scripts]
-code-review = "src.main:main"
+llmreview = "llmreview.main:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
