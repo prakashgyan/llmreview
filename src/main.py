@@ -116,3 +116,5 @@ if __name__ == "__main__":
         args.file_path
     )
     main(diff_data, args.file_path)
+    # file = "src/main.py"
+    # main(get_file_diff_between_branches("feature/core_items", "master", file), file)

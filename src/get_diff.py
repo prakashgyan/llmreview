@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 
 def get_file_diff_between_branches(source_branch: str, target_branch: str, filename: str) -> str:
@@ -13,6 +14,9 @@ def get_file_diff_between_branches(source_branch: str, target_branch: str, filen
     Returns:
         str: A unified diff showing changes from source_branch to target_branch.
     """
+    if not os.path.isfile(filename):
+        print(f"Provided file '{filename}' does not exist.")
+        exit(0)
     try:
         # Fetch latest refs (optional, but safe)
         subprocess.run(['git', 'fetch'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -38,11 +42,3 @@ def get_file_diff_between_branches(source_branch: str, target_branch: str, filen
         return f"Unexpected error: {str(ex)}"
 
 
-
-# if __name__ == "__main__":
-#     # Example usage
-#     source_branch = "master"
-#     target_branch = "feature/core_items"
-#     filename = "README.md"
-#     diff = get_file_diff_between_branches(source_branch, target_branch, filename)
-#     print(diff)
