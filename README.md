@@ -53,7 +53,8 @@ The review will be printed in the terminal and also saved to:
 ```
 reviews/my_module.py.md
 ```
-
+### Example review
+![](./example.png)
 ---
 
 ## First-Time Setup
