@@ -1,4 +1,6 @@
-# LLM Code Reviewer for Git Diffs
+# LLM Code Commit Reviewer
+
+Get a review of your commits for a file on your repositoy
 
 This CLI tool helps you perform automated code reviews using Azure OpenAI by comparing a file between two Git branches and generating a review based on your team's coding standards.
 
@@ -36,12 +38,14 @@ pip install dist/llmreview-0.1.0-py3-none-any.whl
 
 ```bash
 python main.py <source_branch> <target_branch> <file_path>
+llmreview <source_branch> <target_branch> <file_path>
 ```
 
 Example:
 
 ```bash
 python main.py feature/new-feature main src/my_module.py
+llmreview feature/new-feature main src/my_module.py
 ```
 
 The review will be printed in the terminal and also saved to:
@@ -72,7 +76,6 @@ The model uses the instructions from:
 ```
 instructions/code_review.txt
 ```
-
 Customize this file to guide the LLM on your coding standards and review expectations.
 
 ---
@@ -90,19 +93,27 @@ Customize this file to guide the LLM on your coding standards and review expecta
 
 ```
 llmreview/
-├── main.py                # Main CLI logic
-├── get_diff.py            # Git diff helper
-├── instructions/
-│   └── code_review.txt    # Review instructions for the LLM
-├── reviews/               # Output folder for reviews
-├── .llmreviewcfg          # Stored config (auto-generated)
+├── MANIFEST.in
+├── README.md
+├── pyproject.toml
+├── requirements.txt
+├── reviews/                      # Output folder for reviews
+├── src/
+│   └── llmreview/
+│       ├── __init__.py            # Main CLI logic
+│       ├── get_diff.py            # Git diff helper
+│       ├── main.py
+│       └── instructions/
+│           ├── __init__.py
+│           └── code_review.txt    # Review instructions for the LLM
+├── .llmreviewcfg                  # Stored config (auto-generated)
 ```
 
 ---
 
 ## Author
 
-Made by Gyan Prakash  
+PrakashGyan
 
 ---
 
