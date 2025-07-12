@@ -3,8 +3,13 @@ import sys
 import argparse
 from pathlib import Path
 from openai import AzureOpenAI
-from get_diff import get_file_diff_between_branches
+from llmreview.get_diff import get_file_diff_between_branches
 from dotenv import load_dotenv
+import importlib.resources
+
+from llmreview import instructions  # the folder must be a Python package (have __init__.py)
+
+
 
 
 
@@ -37,7 +42,7 @@ api_version = "2024-12-01-preview"
 REVIEW_LOCATION = "reviews"
 os.makedirs(REVIEW_LOCATION, exist_ok=True)
 
-with open(Path(__file__).parent.resolve() / "instructions/code_review.txt", "r", encoding="utf-8", errors="ignore") as file:
+with importlib.resources.files(instructions).joinpath("code_review.txt").open("r", encoding="utf-8", errors="ignore") as file:
     INSTRUCTIONS = file.read()
 
 
@@ -108,7 +113,7 @@ def parse_arguments():
     )
     return parser.parse_args()
 
-if __name__ == "__main__":
+def cli():
     args = parse_arguments()
     diff_data = get_file_diff_between_branches(
         args.source_branch,
@@ -116,5 +121,6 @@ if __name__ == "__main__":
         args.file_path
     )
     main(diff_data, args.file_path)
-    # file = "src/main.py"
-    # main(get_file_diff_between_branches("feature/core_items", "master", file), file)
+
+if __name__ == "__main__":
+    cli()

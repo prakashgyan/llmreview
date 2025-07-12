@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-llmreview = "llmreview.main:main"
+llmreview = "llmreview.main:cli"
 
 [build-system]
 requires = ["setuptools>=61.0"]
@@ -19,6 +19,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
